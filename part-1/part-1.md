@@ -15,4 +15,14 @@ _burn() // checks to see if a token-specific URI was set for the token, and if s
 
 ```
 
-1. ERC721Pausable -
+1. ERC721Pausable - ERC721 token with pausable token transfers, minting and burning.
+
+    -  Useful for scenarios such as preventing trades until the end of an evaluation period
+    -  Having an emergency switch for freezing all token transfers in the event of a large bug.
+
+```javascript
+_beforeTokenTransfer(from, to, amount) //condition: The contract must not be paused
+
+```
+
+What are the risks of the Pausable contract?
