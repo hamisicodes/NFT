@@ -16,4 +16,13 @@ contract SimpleNft {
         return _owners[_tokenId];
     }
 
+    function transferFrom(address _from, address _to, uint256 _tokenId) external {
+        // check if token exists
+        require(_owners[_tokenId] != address(0), "No such token");
+        require(_owners[_tokenId] == _from, "cannot transfer from");
+        require(msg.sender == _from, "required to be owner");
+        _owners[_tokenId] = _to;
+    }
+
+
 }
