@@ -9,10 +9,15 @@ contract SimpleNft {
     mapping (address => mapping(address => bool)) private _operators;
     string public baseURL = "https://example.com/images/";
 
+    event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
+
+
     function mint(uint256 _tokenId) external {
         require(_owners[_tokenId] == address(0), "already minted");
         require(_tokenId < 100, "token id too large");
         _owners[_tokenId] = msg.sender;
+        emit Transfer(address(0), msg.sender, _tokenId);
+
     }
 
     function ownerOf(uint256 _tokenId) external view returns (address) {
@@ -30,6 +35,8 @@ contract SimpleNft {
         require(_owners[_tokenId] == _from, "cannot transfer from");
         require(msg.sender == _from, "required to be owner");
         _owners[_tokenId] = _to;
+        emit Transfer(_from, _to, _tokenId);
+
     }
 
     function tokenURI(uint256 _tokenId) external view returns (string memory) {
