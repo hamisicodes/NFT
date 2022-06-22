@@ -6,19 +6,21 @@ contract SimpleNft {
     using Strings for uint256;
 
     mapping(uint256 => address) private _owners;
-    mapping (address => mapping(address => bool)) private _operators;
+    mapping(address => mapping(address => bool)) private _operators;
+    mapping(address => uint256) private _balances;
     string public baseURL = "https://example.com/images/";
 
     event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
     event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);
-
-
 
     function mint(uint256 _tokenId) external {
         require(_owners[_tokenId] == address(0), "already minted");
         require(_tokenId < 100, "token id too large");
         _owners[_tokenId] = msg.sender;
         emit Transfer(address(0), msg.sender, _tokenId);
+
+        _balances[msg.sender] += 1;
+
 
     }
 
@@ -39,6 +41,9 @@ contract SimpleNft {
         _owners[_tokenId] = _to;
         emit Transfer(_from, _to, _tokenId);
 
+        _balances[_from] -= 1;
+        _balances[_to] += 1;
+
     }
 
     function tokenURI(uint256 _tokenId) external view returns (string memory) {
@@ -54,6 +59,10 @@ contract SimpleNft {
     function isApprovedForAll(address _owner, address _operator) external view returns (bool) {
         return _operators[_owner][_operator];
 
+    }
+
+    function balanceOf(address _owner) external view returns (uint256) {
+        return _balances[_owner];
     }
 
 
