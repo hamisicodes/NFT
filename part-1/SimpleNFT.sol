@@ -10,6 +10,8 @@ contract SimpleNft {
     string public baseURL = "https://example.com/images/";
 
     event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
+    event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);
+
 
 
     function mint(uint256 _tokenId) external {
@@ -46,6 +48,7 @@ contract SimpleNft {
 
     function setApprovalForAll(address _operator, bool _approved) external {
         _operators[msg.sender][_operator] = _approved;
+        emit ApprovalForAll(msg.sender, _operator, _approved);
     }
 
     function isApprovedForAll(address _owner, address _operator) external view returns (bool) {
