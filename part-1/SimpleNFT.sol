@@ -6,6 +6,7 @@ contract SimpleNft {
     using Strings for uint256;
 
     mapping(uint256 => address) private _owners;
+    mapping (address => mapping(address => bool)) private _operators;
     string public baseURL = "https://example.com/images/";
 
     function mint(uint256 _tokenId) external {
@@ -35,4 +36,15 @@ contract SimpleNft {
         require(_owners[_tokenId] != address(0), "No such token");
         return string(abi.encodePacked(baseURL, _tokenId.toString()));
     }
+
+    function setApprovalForAll(address _operator, bool _approved) external {
+        _operators[msg.sender][_operator] = _approved;
+    }
+
+    function isApprovedForAll(address _owner, address _operator) external view returns (bool) {
+        return _operators[_owner][_operator];
+
+    }
+
+
 }
