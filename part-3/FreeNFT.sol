@@ -16,5 +16,10 @@ contract FreeNFT is ERC721 {
         _mint(msg.sender, tokenSupply);
     }
 
+    function _baseURI() internal pure override returns (string memory) {
+        return "ipfs://QmTiu77os2ZbiaUBqHSc384e2aqp95xSfL8MbFWZqQtjXm/";
+    }
+
+
 
 }
