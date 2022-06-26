@@ -14,6 +14,7 @@ contract FreeNFT is ERC721 {
     function mint() public {
         require(tokenSupply < MAX_SUPPLY, "Supply used up");
         _mint(msg.sender, tokenSupply);
+        tokenSupply ++ ;
     }
 
     function _baseURI() internal pure override returns (string memory) {
