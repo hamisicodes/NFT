@@ -7,7 +7,7 @@ contract FreeNFT is ERC721 {
     uint256 public constant MAX_SUPPLY = 10;
 
 
-    constructor() ERC721("HAMISI-NFT", "HNFT") {
+    constructor() ERC721("HAMISI-NFT-COLLECTION-1", "HNFT1") {
 
     }
 
