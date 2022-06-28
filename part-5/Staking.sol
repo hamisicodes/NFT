@@ -3,17 +3,17 @@ pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./SimpleNFT.sol";
+import "./FreeNFT.sol";
 import "./Token.sol";
 
 contract Staking {
     mapping (uint256 => address) private _stakings;
     mapping (uint256 => uint256) private _lastRuns;
-    SimpleNFT public nft;
+    FreeNFT public nft;
     SimpleToken public myToken;
     
     constructor(address _nft, address _token) {
-        nft = SimpleNFT(_nft);
+        nft = FreeNFT(_nft);
         myToken = SimpleToken(_token);
     }
 
