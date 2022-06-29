@@ -26,3 +26,5 @@ _beforeTokenTransfer(from, to, amount) //condition: The contract must not be pau
 ```
 
 What are the risks of the Pausable contract?
+An address responsible for pausing the contract has more power over the contract and this creates authority over others.
+operations of the contract may be hindered in case the authority decides to pause the contract at their own will.
