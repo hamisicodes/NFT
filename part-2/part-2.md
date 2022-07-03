@@ -29,5 +29,5 @@ The transfer function for a ERC721 standard is capable of transferring only one 
 ```
 
 #### Explain how 1155 is capable of providing non-fungible tokens the way ERC721 can (hint read the original EIP).
-ERC1155 has the `_id` argument contained in its function argument set. This indicates a specific token or token type in a transaction. In the case of an NFT, a specific `id` is provided.
+By specifying the amount of a given token to be minted as one, It shows that the token is non-fungible.
 
